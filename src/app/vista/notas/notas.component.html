@@ -1,0 +1,21 @@
+<div class="editor-notas">
+    <!-- Añade las notas, el [(ngModel)], lo que hace mantener el input y el componente en sincronia, cuando se agrega el contenido de la nota -->
+    <input type="text" placeholder="TITULO DE NOTA" [(ngModel)]="TituloNota" />
+    <textarea placeholder="CONTENIDO DE NOTA" [(ngModel)]="ContenidoNota"></textarea>
+    <button (click)="addNota()">+</button>
+    <!-- Cuando se hace click al boton + de la nota, se llama a la funcion addNota del componente NotasComponent -->
+</div>
+
+<!-- Del editor, se pasa a la lista de notas -->
+
+<!-- ngFor se usa para desplegar listas repitiendo elementos, en este caso en el array de notas-->
+<div class="notas-lista">
+    <!-- let nota of notas, significa que por cada nota en el array notas, se crea un nuevo div y con una nueva nota-->
+    <div *ngFor="let nota of notas" class="nota">
+        <h3>{{ nota.title }}</h3>
+        <h3>{{ nota.content }}</h3>
+        <button (click)="eliminarNota(nota.id)">x</button>
+        <!-- <button (click)="editar(nota.id)">edit</button> -->
+        <!-- <button (click)="guardar(nota.id)">save</button> -->
+    </div>
+</div>

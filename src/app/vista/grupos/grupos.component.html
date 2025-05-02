@@ -1,0 +1,7 @@
+<div class="sidebar">
+    <button class="crear-grupo" (click)="crearGrupo()">CREAR GRUPO + </button>
+    <div *ngFor="let grupo of grupos" class="grupo-row">
+        <button class="grupo-boton">{{ grupo.name }}</button>
+        <button class="eliminar-boton" (click)="eliminarGrupo(grupo.id)">x</button>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 import { NotasServicio } from '../../servicio/servicio';
 import { Grupo } from '../../modelo/modelo';
@@ -6,7 +7,6 @@ import { Grupo } from '../../modelo/modelo';
 import { CommonModule } from '@angular/common';
 // CommonModulo, lo que hace es proveer directivas de angular como *ngFor
 // ngFor se usa para desplegar listas repitiendo elementos
-
 
 @Component({
   selector: 'app-grupos',
@@ -20,6 +20,8 @@ export class GruposComponent {
 
   // Un array de grupos, que se pasan a traves de la interfaz, para validar los tipos
   grupos: Grupo[] = [];
+
+  @Output () grupoSeleccionado = new EventEmitter<{ id: number, name:string }>();
 
   constructor(private notasServicio: NotasServicio){
     this.notasServicio.grupos$.subscribe(grupos => this.grupos = grupos);
@@ -38,5 +40,9 @@ export class GruposComponent {
   // Elimina un grupo
   eliminarGrupo (id: number){
     this.notasServicio.deleteGroup(id);
+  }
+
+  seleccionarGrupo(grupo: Grupo){
+    this.grupoSeleccionado.emit({id: grupo.id, name: grupo.name});
   }
 }

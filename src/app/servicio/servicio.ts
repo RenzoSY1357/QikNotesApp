@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Nota, Grupo } from '../modelo/modelo';
 
-
 /*
 Este servicio maneja las notas y agrupa los datos
 */
@@ -20,10 +19,11 @@ export class NotasServicio {
     private notasSubject = new BehaviorSubject<Nota[]>([]); // Emite un array de Nota, "([])", esto es para indicar que el array emitido esta vacio
     // BehaviorSubject es un tipo especial de Observable cuyo valor puede ser actualizado
 
+    //la propiedad notas, se vuelve un observable
     notas$ = this.notasSubject.asObservable();
     // convertimos el BehaviorSubject en un observable normal, que significa que las notas no se pueden modificar directamente, solo a traves del servicio
 
-    private grupos: Grupo[] = [];
+    private grupos: Grupo[] = []; //Declara un array de grupos, para almacenar los grupos en memoria
     private gruposSubject = new BehaviorSubject<Grupo[]>([]);
     grupos$ = this.gruposSubject.asObservable();
 

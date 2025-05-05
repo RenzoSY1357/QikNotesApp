@@ -1,1 +1,10 @@
-<p>vista-grupo works!</p>
+<div>
+    <button (click)="volver.emit()">Volver</button>
+    <h2>{{ grupoNombre }}</h2>
+    <button (click)="limpiarNotasGrupo()">Limpiar</button>
+    
+    <div *ngFor="let nota of notasGrupo">
+        <h3>{{ nota.title }}<button (click)="eliminarNota(nota.id)">x</button></h3>
+        <p>{{ nota.content }}</p>
+    </div>
+</div>

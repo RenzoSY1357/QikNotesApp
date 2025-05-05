@@ -1,7 +1,14 @@
 <main class="main">
 
- <app-grupos></app-grupos>
  
- <app-notas></app-notas>
+    <ng-container *ngIf="grupoSeleccionadoId === null">
+        <app-grupos (grupoSeleccionado)="GrupoSeleccionado($event)"></app-grupos>
+        <app-notas></app-notas>
+    </ng-container>
 
+    <ng-container *ngIf="grupoSeleccionadoId !== null">
+        <app-vista-grupo [grupoId]="grupoSeleccionadoId" [grupoNombre]="grupoSeleccionadoNombre" (volver)="volverAVistaPrincipal()"></app-vista-grupo>
+    </ng-container>
+<!-- <app-notas [grupoSeleccionadoId]="grupoSeleccionadoId" [grupoSeleccionadoNombre]="grupoSeleccionadoNombre" (volver)="volverAVistaPrincipal()"></app-notas> -->
+<!-- <app-notas [grupoSeleccionadoId]="grupoSeleccionadoId"></app-notas> -->
 </main>

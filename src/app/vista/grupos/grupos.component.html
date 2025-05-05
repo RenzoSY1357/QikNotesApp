@@ -1,7 +1,12 @@
 <div class="sidebar">
     <button class="crear-grupo" (click)="crearGrupo()">CREAR GRUPO + </button>
+
+    <!--
+    *ngFor, repite un elemento para cada elemento de la lista, let of notas, le dice a *ngFor como iterar,
+        repite el grupo por cada elemento del array de grupos
+    -->
     <div *ngFor="let grupo of grupos" class="grupo-row">
-        <button class="grupo-boton">{{ grupo.name }}</button>
+        <button class="grupo-boton" (click)="seleccionarGrupo(grupo)">{{ grupo.name }}</button>
         <button class="eliminar-boton" (click)="eliminarGrupo(grupo.id)">x</button>
     </div>
 </div>

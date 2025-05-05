@@ -1,9 +1,32 @@
 <div class="editor-notas">
+
+<!--* ng significa Angular, (AngularModelo, AngularValor, etc) -->
+
+<!--* ( ) : enlace de evento-->
+<!-- Se usa para escuchar eventos del DOM(como los clicks), y ejecuta metodos del componente -->
+
+<!--* [ ] : enlace de propiedad-->
+<!-- Se usa para enlazar el valor de una propiedad de un componente a un atributo de un elemento HTML -->
+
+<!--* [()] : enlace bidireccional -->
+<!-- Permite que el valor de un input, y la variable del componente, siempre esten sincronizados -->
+   
+<div *ngIf="notaSeleccionada; else editorForm">
     <!-- Añade las notas, el [(ngModel)], lo que hace mantener el input y el componente en sincronia, cuando se agrega el contenido de la nota -->
-    <input type="text" placeholder="TITULO DE NOTA" [(ngModel)]="TituloNota" />
-    <textarea placeholder="CONTENIDO DE NOTA" [(ngModel)]="ContenidoNota"></textarea>
-    <button (click)="addNota()">+</button>
-    <!-- Cuando se hace click al boton + de la nota, se llama a la funcion addNota del componente NotasComponent -->
+    <input type="text" [value]="notaSeleccionada.title" readonly/>
+    <textarea [value]="notaSeleccionada.content" readonly></textarea>
+    <button (click)="cerrarNotaSeleccionada()">Back</button>
+</div>
+    <ng-template #editorForm>
+        <input type="text" placeholder="TITULO DE NOTA" [(ngModel)]="TituloNota"/>
+        <textarea placeholder="CONTENIDO DE NOTA" [(ngModel)]="ContenidoNota"></textarea>
+
+        <!-- ngIf muestra o oculta elementos, el boton solo se muestra, si editar notas id no es null -->
+        <button *ngIf="editarNotaId === null"  (click)="addNota()">+</button>
+        <!-- Cuando se hace click al boton + de la nota, se llama a la funcion addNota del componente NotasComponent -->
+        <button *ngIf="editarNotaId !== null" (click)="guardarNota(editarNotaId)">save</button>
+        <button *ngIf="editarNotaId !== null" (click)="cancelarEdicion()">cancelar</button>
+    </ng-template>
 </div>
 
 <!-- Del editor, se pasa a la lista de notas -->
@@ -11,11 +34,23 @@
 <!-- ngFor se usa para desplegar listas repitiendo elementos, en este caso en el array de notas-->
 <div class="notas-lista">
     <!-- let nota of notas, significa que por cada nota en el array notas, se crea un nuevo div y con una nueva nota-->
-    <div *ngFor="let nota of notas" class="nota">
-        <h3>{{ nota.title }}</h3>
-        <h3>{{ nota.content }}</h3>
-        <button (click)="eliminarNota(nota.id)">x</button>
-        <!-- <button (click)="editar(nota.id)">edit</button> -->
-        <!-- <button (click)="guardar(nota.id)">save</button> -->
+    <div *ngFor="let nota of notasFiltradas" class="nota">
+            <h3 (click)="seleccionarNota(nota)" style="cursor:pointer;">{{ nota.title }}</h3>
+            <button (click)="abrirSelectorGrupo(nota)">save</button>
+            <button (click)="editarNota(nota)">edit</button>
+            <button (click)="eliminarNota(nota.id)">x</button>
+    </div>
+</div>
+
+<button class="limpiar-boton" (click)="limpiarNotas()">LIMPIAR</button>
+
+<div *ngIf="mostrarSelectorGrupo" class="modal-Selector-grupo">
+    <div class="modal-content">
+        <h3>Elije la lista</h3>
+        <button *ngFor="let grupo of grupos" (click)="asignarNotaAGrupo(grupo.id)">
+            {{ grupo.name }}
+        </button>
+        <button (click)="asignarNotaAGrupo(null)">Sin grupo</button>
+        <button (click)="cancelarSelectorGrupo()">Cancelar</button>
     </div>
 </div>

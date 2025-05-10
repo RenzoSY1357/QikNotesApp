@@ -3,6 +3,7 @@
     <h2>{{ grupoNombre }}</h2>
     <button (click)="limpiarNotasGrupo()">Limpiar</button>
     
+    <!-- Muestra las notas que pertenecen al grupo y crea un boton para eliminar la nota-->
     <div *ngFor="let nota of notasGrupo">
         <h3>{{ nota.title }}<button (click)="eliminarNota(nota.id)">x</button></h3>
         <p>{{ nota.content }}</p>

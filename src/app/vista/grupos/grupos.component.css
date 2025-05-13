@@ -1,0 +1,101 @@
+:host {
+    /* selector especial que solo afecta al componente donde se usa, en este caso <app-notas>*/
+    --color-background1: #846358;
+    --color-background2: #6c5047;
+    --color-nota: #ffec99;
+    --color-nota-panel: #868E96;
+    --color-boton-verde: #69DB7C;
+    --color-boton-cyanverdoso: #38D9A9;
+    --color-boton-rojo: #ff8787;
+    --color-boton-naranja: #FFA94D;
+    --color-boton-azul: #3BC9DB;
+}
+
+/** La lista  */
+
+.grupos-lista {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background2);
+    padding: 18px;
+    height: 100vh;
+    border: 1.5px #000000 solid;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    align-items: center;
+}
+
+/** Botones */
+
+button {
+    border: 1.9px #000000 solid;
+    border-radius: 8px;
+    padding: 10px 0px;
+    font-size: 1em;
+    margin: 0 1px;
+    cursor: pointer;
+    transition: filter 0.2s;
+    font-family: 'Virgil', sans-serif !important;
+}
+
+button:hover {
+    filter : brightness(0.95)
+}
+
+.botones-grupo {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 63px;
+    text-align: center;
+    margin-bottom: 18px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    border-radius: 12px;
+    position: relative;
+    padding-right:35px;
+    overflow: hidden;
+}
+
+.crear-grupo {
+    width: 268px;
+    min-height: 65px;
+    height: 65px;
+    padding: 8px 0px;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.eliminar-boton {
+    display: flex;
+    position: absolute;
+    right: 16px;
+    border: 2px #000000 solid;
+    width: 45px;
+    height: 43px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-left: 0;
+    transform: translateY (-50%);
+}
+
+
+.boton-verde{
+    background: var(--color-boton-verde);
+}
+
+.boton-azul{
+    background: var(--color-boton-azul);
+}
+
+.boton-rojo{
+    background: var(--color-boton-rojo);
+}

@@ -31,15 +31,24 @@ export class GruposComponent {
   // Generamos un prompt para crear un grupo, llamando a la funcion del servicio addGrupo
   crearGrupo(){
 
+    const caracteresMaximos = 15;
+
     const nombre = prompt('Nombre del grupo');
 
     if (nombre) {
-     this.notasServicio.addGrupo(nombre);
+
+      if (nombre.length <= caracteresMaximos){
+        this.notasServicio.addGrupo(nombre);
+      } else {
+        alert(`El nombre del grupo no puede exceder de ${caracteresMaximos} caracteres.`);
+        this.crearGrupo();
+      }
     }
   }
 
   // Eliminamos un grupo pasando su id y llamando a la funcion del servicio deleteGroup
-  eliminarGrupo (id: number){
+  eliminarGrupo (id: number, event:Event){
+    event.stopPropagation();
     this.notasServicio.deleteGroup(id);
   }
 

@@ -1,78 +1,21 @@
-<div class="titulo">
-    <p>QiK Notes</p>
-
 <div class="editor-notas">
-
-<!--* ng significa Angular, (AngularModelo, AngularValor, etc) -->
-
-<!--* ( ) : enlace de evento-->
-<!-- Se usa para escuchar eventos del DOM(como los clicks), y ejecuta metodos del componente -->
-
-<!--* [ ] : enlace de propiedad-->
-<!-- Se usa para enlazar el valor de una propiedad de un componente a un atributo de un elemento HTML -->
-
-<!--* [()] : enlace bidireccional -->
-<!-- Permite que el valor de un input, y la variable del componente, siempre esten sincronizados -->
-
-    <ng-template #editorForm>
-        <input type="text" placeholder="TITULO DE NOTA" maxlength="24" [(ngModel)]="TituloNota"/>
-        <textarea [(ngModel)]="ContenidoNota"></textarea>
-
-        <!-- ngIf muestra o oculta elementos, el boton solo se muestra, si editar notas id no es null -->
-        <!-- Cuando se hace click al boton + de la nota, se llama a la funcion addNota del componente NotasComponent -->
-        <button id="aniadir" class="boton-verde" *ngIf="editarNotaId === null"  (click)="addNota()">+</button>
-        <div class="editor-boton">
-            <button class="botones-nota boton-rojo boton-edicion" *ngIf="editarNotaId !== null" (click)="cancelarEdicion()">cancelar</button>
-            <button class="botones-nota boton-verde boton-edicion" *ngIf="editarNotaId !== null" (click)="guardarNota(editarNotaId)">save</button>
-        </div>
-    </ng-template>
-
-        <!-- Si la nota es seleccionada, se mostrara su contenido (Se ejecuta el bloque), que es este bloque, sino, se oculta (el bloque) -->
-    <div *ngIf="notaSeleccionada; else editorForm">
-        <!-- Añade las notas, el [(ngModel)], lo que hace mantener el input y el componente en sincronia, cuando se agrega el contenido de la nota -->
-        <!-- [value], lo que hace es mostrar en el input, el valor que es notaSeleccionada.title, readonly significa que no se puede editar -->
-         <div class="nota-vista">
-            <input type="text" [value]="notaSeleccionada.title" readonly/>
-            <textarea [value]="notaSeleccionada.content" readonly></textarea>
-
-            <div class="boton-atras">
-                <button class="botones-nota boton-azul atras" (click)="cerrarNotaSeleccionada()">Back</button>
-            </div>
-        </div>
-    </div>
-
-</div>
+    <!-- Añade las notas, el [(ngModel)], lo que hace mantener el input y el componente en sincronia, cuando se agrega el contenido de la nota -->
+    <input type="text" placeholder="TITULO DE NOTA" [(ngModel)]="TituloNota" />
+    <textarea placeholder="CONTENIDO DE NOTA" [(ngModel)]="ContenidoNota"></textarea>
+    <button (click)="addNota()">+</button>
+    <!-- Cuando se hace click al boton + de la nota, se llama a la funcion addNota del componente NotasComponent -->
 </div>
 
-<!-- De la lista de notas, se pasa al editor -->
+<!-- Del editor, se pasa a la lista de notas -->
 
-<div class="notas-lista-panel">
-    <!-- ngFor se usa para desplegar listas repitiendo elementos, en este caso en el array de notas-->
-    <div class="notas-lista">
-
-        <!-- let nota of notas, significa que por cada nota en el array notas Filtradas, se crea un nuevo div y con una nueva nota-->
-        <div *ngFor="let nota of notasFiltradas" class="nota-panel"> <!-- notasFiltradas, devuelve las notas que no tienen grupo -->
-                <p class='nota' (click)="seleccionarNota(nota)" style="cursor:pointer;">{{ nota.title }}</p>
-                <div class="boton-opciones">
-                    <button class="botones-nota boton-verde" (click)="abrirSelectorGrupo(nota)">save</button><!-- boton guardar -->
-                    <button class="botones-nota boton-azul" (click)="editarNota(nota)">edit</button><!-- boton editar -->
-                    <button class="botones-nota boton-rojo" (click)="eliminarNota(nota.id)">x</button><!-- boton eliminar nota -->
-                </div>
-        </div>
-
-        <button class="boton-rojo" (click)="limpiarNotas()">LIMPIAR</button>
-
+<!-- ngFor se usa para desplegar listas repitiendo elementos, en este caso en el array de notas-->
+<div class="notas-lista">
+    <!-- let nota of notas, significa que por cada nota en el array notas, se crea un nuevo div y con una nueva nota-->
+    <div *ngFor="let nota of notas" class="nota">
+        <h3>{{ nota.title }}</h3>
+        <h3>{{ nota.content }}</h3>
+        <button (click)="eliminarNota(nota.id)">x</button>
+        <!-- <button (click)="editar(nota.id)">edit</button> -->
+        <!-- <button (click)="guardar(nota.id)">save</button> -->
     </div>
 </div>
-
-<!-- Apartado de seleccion de grupo al hacer click en (save) en una nota -->
-<div *ngIf="mostrarSelectorGrupo" class="modal-Selector-grupo">
-    <div class="modal-content">
-        <div class="boton-verde Elejir"><p>Elije un grupo</p></div>
-        <button class="boton-azul" *ngFor="let grupo of grupos" (click)="asignarNotaAGrupo(grupo.id)">{{ grupo.name }}</button>
-        <button class="boton-rojo" (click)="cancelarSelectorGrupo()">Cancelar</button>
-
-    </div>
-
-</div>
-

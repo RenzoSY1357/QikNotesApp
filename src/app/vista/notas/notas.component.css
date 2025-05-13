@@ -72,6 +72,7 @@ input[type="text"] {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    font-size: 1.5em !important;
 }
 
 input[type="text"], textarea {
@@ -110,7 +111,8 @@ textarea::placeholder {
 
 .notas-lista-panel {
     background: var(--color-background2);
-    width: 355px;
+    min-width: 355px;
+    width: 100%;
     padding: 18px;
     height: 100vh;
     border: 1.5px #000000 solid;
@@ -118,12 +120,15 @@ textarea::placeholder {
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: none;
+
+    box-sizing: border-box;
 }
 
 .notas-lista {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
 }
 
 .nota-panel {
@@ -133,8 +138,7 @@ textarea::placeholder {
     border: 1.8px #000000 solid;
     border-radius: 10px;
     padding: 14px 12px;
-    margin-left: 1.1vh;
-    margin-right: 1.1vh;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -147,7 +151,7 @@ textarea::placeholder {
     justify-content: flex-start;
     border: 1.5px #000000 solid;
     max-width: 270px;
-    width: 270px;
+    width: 100%;
     border-radius: 10px;
     padding: 15px;
     display: flex;
@@ -164,7 +168,7 @@ textarea::placeholder {
 .nota-vista {
     display: flex;
     flex-direction: column;
-    height: 590px;
+    height: 56vh;
 }
 
 .nota-vista textarea {
@@ -209,7 +213,7 @@ button {
     text-align: center;
     border: 2px #000000 solid;
     border-radius: 10px;
-    
+
     width: 100%;
 }
 
@@ -266,11 +270,11 @@ button:hover {
 
 .modal-Selector-grupo {
     position: fixed;
-    top: 20%; left: 40%; right: 40%; bottom: 20%;
+    top: 20%; left: 10%; right: 10%; bottom: 20%;
+    min-width: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
 }
 
 .modal-content {
@@ -288,25 +292,80 @@ button:hover {
 
 /** Modelo del componente responsive */
 
+@media (max-width: 900px) {
+  .editor-notas {
+    width: 100vh;
+    height: 65vh;
+  }
+  
+  .notas-lista-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    flex-direction: column;
+  }
+  
+  .vista-principal {
+    flex-direction: column;
+  }
+  
+  .editor-notas {
+    width: 90%;
+    max-width: 600px;
+    height: 60vh;
+    margin: 10px auto;
+  }
+  
+  .notas-lista-panel {
+    height: auto;
+    max-height: 40vh;
+  }
+  
+  #aniadir {
+    height: 40px;
+    width: 40px;
+  }
+
+  .notas-vista {
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
-    .main-layout {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        padding: 10px;
-    }
-    .editor-notas {
-        max-width: 98vw;
-        padding: 10px;
-        width: 98vw;
-    }
-    .nota {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-    button {
-        width: 100%;
-        margin: 4px 0;
-    }
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .editor-notas {
+    padding: 15px;
+    width: 95%;
+    margin: 10px auto;
+  }
+  
+  .nota-panel {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    font-size: 1.2em !important;
+  }
+  
+  .botones-nota {
+    width: 60px;
+    font-size: 0.9em;
+  }
+  
+  .modal-content {
+    min-width: 80%;
+    width: 80%;
+  }
+
 }

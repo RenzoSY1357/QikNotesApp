@@ -1,11 +1,19 @@
-<div>
-    <button (click)="volver.emit()">Volver</button>
-    <h2>{{ grupoNombre }}</h2>
-    <button (click)="limpiarNotasGrupo()">Limpiar</button>
-    
+<div class="vista-grupo">
+    <div class="encabezado">
+
+        <button class="boton-cyanverdoso boton-volver" (click)="volver.emit()"> <- VOLVER</button>
+
+            <p>{{ grupoNombre }}</p>
+
+        <button class="boton-rojo boton-limpiar" (click)="limpiarNotasGrupo()">LIMPIAR</button>
+    </div>
+
     <!-- Muestra las notas que pertenecen al grupo y crea un boton para eliminar la nota-->
-    <div *ngFor="let nota of notasGrupo">
-        <h3>{{ nota.title }}<button (click)="eliminarNota(nota.id)">x</button></h3>
-        <p>{{ nota.content }}</p>
+     <div class="notas">
+        <div class="nota" *ngFor="let nota of notasGrupo">
+            <h3 class="title">{{ nota.title }}<button class="boton-rojo boton-eliminar" (click)="eliminarNota(nota.id)">x</button></h3>
+            <p>{{ nota.content }}</p>
+        </div>
+
     </div>
 </div>

@@ -68,13 +68,13 @@
     border: 2px black solid;
     padding: 10px 20px;
     align-items: center;
-    position: relative; /* Add position relative */
+    position: relative;
     box-shadow: 0 4px 8px rgba(31, 30, 30, 0.31);
 }
 
-/* Fix the title to stay at the top */
+
 .nota h3.title {
-    position: sticky; /* Make the title sticky */
+    position: sticky;
     top: 0;
     width: 100%;
     background-color: var(--color-nota);
@@ -204,6 +204,8 @@ button:hover {
 .boton-rojo{
     background: var(--color-boton-rojo);
 }
+
+/** Media queries */
 
 @media (max-width: 1200px) {
     .notas {

@@ -9,6 +9,7 @@
   height: 100vh;
 }
 
+/** Media queries*/
 
 @media (max-width: 900px) {
   .vista-principal {

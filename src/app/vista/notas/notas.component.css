@@ -292,7 +292,6 @@ button:hover {
 
 /** Modelo del componente responsive */
 
-/* Enhanced responsive design */
 @media (max-width: 900px) {
   .editor-notas {
     width: 100vh;

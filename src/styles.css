@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Import the Virgil font from Excalidraw */
+@font-face {
+  font-family: 'Virgil';
+  src: url('assets/fonts/Virgil.woff2') format('woff2'),
+       url('https://excalidraw.com/Virgil.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Apply a default font-family to ensure consistency */
+body {
+  font-family: 'Virgil', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  background-color: #846358; /* The brown color from your variables */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Force Virgil font on all text elements */
+p, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea {
+  font-family: 'Virgil', sans-serif !important;
+}

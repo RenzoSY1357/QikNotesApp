@@ -1,10 +1,16 @@
-<main class="main">
+<main class="vista-principal">
  
     <ng-container *ngIf="grupoSeleccionadoId === null">
-        <!-- (grupoSeleccionado), escucha el evento grupoSeleccionado de GruposComponent -->
-        <app-grupos (grupoSeleccionado)="GrupoSeleccionado($event)"></app-grupos>
 
-        <app-notas></app-notas>
+        <div class="sidebar-container">
+        <!-- (grupoSeleccionado), escucha el evento grupoSeleccionado de GruposComponent -->
+            <app-grupos (grupoSeleccionado)="GrupoSeleccionado($event)"></app-grupos>
+        </div>
+
+        <div class="editor-container">
+            <app-notas></app-notas>
+        </div>
+
 
     </ng-container>
 

@@ -1,22 +1,7 @@
-<main class="vista-principal">
+<main class="main">
+
+ <app-grupos></app-grupos>
  
-    <ng-container *ngIf="grupoSeleccionadoId === null">
+ <app-notas></app-notas>
 
-        <div class="sidebar-container">
-        <!-- (grupoSeleccionado), escucha el evento grupoSeleccionado de GruposComponent -->
-            <app-grupos (grupoSeleccionado)="GrupoSeleccionado($event)"></app-grupos>
-        </div>
-
-        <div class="editor-container">
-            <app-notas></app-notas>
-        </div>
-
-
-    </ng-container>
-
-    <ng-container *ngIf="grupoSeleccionadoId !== null">
-        <!-- Envia el toma los valores de [grupodId] y el [grupoNombre] y los envia a ViscaGrupoComponent con @Input -->
-        <app-vista-grupo [grupoId]="grupoSeleccionadoId" [grupoNombre]="grupoSeleccionadoNombre" (volver)="volverAVistaPrincipal()"></app-vista-grupo>
-    </ng-container>
-    
 </main>
